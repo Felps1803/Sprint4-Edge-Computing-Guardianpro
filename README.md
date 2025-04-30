@@ -18,8 +18,7 @@ O **GuardianPro** é uma plataforma de telemedicina integrada que conecta os ate
 ---
 ## Diagrama do Sistema
 
-![Diagrama do Sistema](./Sprint4-Edge-Computing-Guardianpro
-/diagrama-edgecomputing.drawio.png)
+![Diagrama do Sistema](./main/diagrama-edgecomputing.drawio.png)
 
 ## ⚙️ Especificações Técnicas dos Principais Componentes
 
