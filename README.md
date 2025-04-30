@@ -16,6 +16,9 @@ O **GuardianPro** é uma plataforma de telemedicina integrada que conecta os ate
 - Utilizar sensores com Arduino para obter sinais vitais e integrá-los ao sistema.
 
 ---
+## Diagrama do Sistema
+
+![Diagrama do Sistema](diagrama-edgecomputing.drawio.png)
 
 ## ⚙️ Especificações Técnicas dos Principais Componentes
 
