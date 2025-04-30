@@ -1,0 +1,408 @@
+[
+    {
+        "id": "a835c5d8c4f6c59f",
+        "type": "ui_button",
+        "z": "7e13803f32f9d2cb",
+        "name": "Front-end GET",
+        "group": "2adeb5339c538d93",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "FRONTEND:GET",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#87CEFA",
+        "className": "",
+        "icon": "",
+        "payload": "FRONTEND:GET",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "1484d51f84f59c30"
+            ]
+        ]
+    },
+    {
+        "id": "b64a78a2f9f3f2f7",
+        "type": "ui_button",
+        "z": "7e13803f32f9d2cb",
+        "name": "Back-end POST",
+        "group": "2adeb5339c538d93",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "BACKEND:POST",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#90EE90",
+        "className": "",
+        "icon": "",
+        "payload": "BACKEND:POST",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "1484d51f84f59c30"
+            ]
+        ]
+    },
+    {
+        "id": "1484d51f84f59c30",
+        "type": "function",
+        "z": "7e13803f32f9d2cb",
+        "name": "LCD Mensagem",
+        "func": "if (msg.payload === \"FRONTEND:GET\") {\n    msg.payload = \"📥 Front-end requisitou dado\";\n} else if (msg.payload === \"BACKEND:POST\") {\n    msg.payload = \"📤 Dado enviado ao Back-end\";\n} else {\n    msg.payload = \"Comando inválido\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 300,
+        "wires": [
+            [
+                "91aa6e5dcbd1ac0d",
+                "baf1a107b67180d5"
+            ]
+        ]
+    },
+    {
+        "id": "91aa6e5dcbd1ac0d",
+        "type": "ui_text",
+        "z": "7e13803f32f9d2cb",
+        "group": "2adeb5339c538d93",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "LCD",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 810,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "95551354e84346a0",
+        "type": "inject",
+        "z": "7e13803f32f9d2cb",
+        "name": "Temperatura 36.5",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "36.5",
+        "payloadType": "num",
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "b375d04a6a4474aa",
+                "ac68670d2e65b67e"
+            ]
+        ]
+    },
+    {
+        "id": "e04133ceebb0aa89",
+        "type": "inject",
+        "z": "7e13803f32f9d2cb",
+        "name": "Temperatura 38.5",
+        "props": [
+            {
+                "p": "payload",
+                "v": "38.5",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "b375d04a6a4474aa",
+                "ac68670d2e65b67e"
+            ]
+        ]
+    },
+    {
+        "id": "b375d04a6a4474aa",
+        "type": "ui_gauge",
+        "z": "7e13803f32f9d2cb",
+        "name": "Temperatura Gauge",
+        "group": "2adeb5339c538d93",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 30,
+        "max": 45,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": 37,
+        "seg2": 38,
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ac68670d2e65b67e",
+        "type": "switch",
+        "z": "7e13803f32f9d2cb",
+        "name": "Temperatura > 37.5?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "37.5",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "37.5",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "86f5c2e710b1c98e"
+            ],
+            [
+                "8bbe138d4e2ef9d9"
+            ]
+        ]
+    },
+    {
+        "id": "86f5c2e710b1c98e",
+        "type": "change",
+        "z": "7e13803f32f9d2cb",
+        "name": "Status Normal",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Temperatura NORMAL",
+                "tot": "str"
+            }
+        ],
+        "x": 780,
+        "y": 160,
+        "wires": [
+            [
+                "7140484f1ac31a86"
+            ]
+        ]
+    },
+    {
+        "id": "8bbe138d4e2ef9d9",
+        "type": "change",
+        "z": "7e13803f32f9d2cb",
+        "name": "Status Crítico",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Temperatura CRÍTICA",
+                "tot": "str"
+            }
+        ],
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "7140484f1ac31a86"
+            ]
+        ]
+    },
+    {
+        "id": "7140484f1ac31a86",
+        "type": "ui_text",
+        "z": "7e13803f32f9d2cb",
+        "group": "2adeb5339c538d93",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Status",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 950,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c1f347aa7fd2a2c1",
+        "type": "serial in",
+        "z": "7e13803f32f9d2cb",
+        "name": "Recebe Arduino",
+        "serial": "c5e0e4f21a06ba69",
+        "x": 80,
+        "y": 200,
+        "wires": [
+            [
+                "f54b1c3cb5efb12d"
+            ]
+        ]
+    },
+    {
+        "id": "f54b1c3cb5efb12d",
+        "type": "function",
+        "z": "7e13803f32f9d2cb",
+        "name": "Extrai Temperatura JSON",
+        "func": "let data;\ntry {\n    data = JSON.parse(msg.payload);\n    msg.payload = data.temperatura;\n    return msg;\n} catch (err) {\n    return null;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "b375d04a6a4474aa",
+                "ac68670d2e65b67e",
+                "a1b2c3d4e5f6g7h8"
+            ]
+        ]
+    },
+    {
+        "id": "baf1a107b67180d5",
+        "type": "serial out",
+        "z": "7e13803f32f9d2cb",
+        "name": "Envia Arduino",
+        "serial": "c5e0e4f21a06ba69",
+        "x": 840,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a1b2c3d4e5f6g7h8",
+        "type": "mqtt out",
+        "z": "7e13803f32f9d2cb",
+        "name": "Enviar para Mosquitto",
+        "topic": "guardianpro/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mosquitto-local",
+        "x": 580,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2adeb5339c538d93",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "127f9d6c07bb201d",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c5e0e4f21a06ba69",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "mosquitto-local",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Local",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "127f9d6c07bb201d",
+        "type": "ui_tab",
+        "name": "Sprint",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
