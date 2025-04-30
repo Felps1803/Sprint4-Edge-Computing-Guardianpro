@@ -45,7 +45,7 @@ O **GuardianPro** é uma plataforma de telemedicina integrada que conecta os ate
 ## Desenvolvedores
 - Felipe Silva, RM559848
 - Rafael Mandel, RM560333
-- Luigi Thiengo, RM560755
+- Luis Filipe Crivellaro RM560877
 
 ## 🔍 Observações Finais
 
