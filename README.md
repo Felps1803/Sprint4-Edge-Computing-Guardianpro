@@ -42,6 +42,10 @@ O **GuardianPro** é uma plataforma de telemedicina integrada que conecta os ate
 - Comunicação via **Serial** com Node-RED
 
 ---
+## Desenvolvedores
+- Felipe Silva, RM559848
+- Rafael Mandel, RM560333
+- Luigi Thiengo, RM560755
 
 ## 🔍 Observações Finais
 
